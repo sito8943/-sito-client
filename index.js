@@ -7,11 +7,10 @@ export class SocketClient {
   /**
    *
    * @param {string} serverUrl - socket url
-   * @param {function} syncFunction - function to trigger after notify event
+   * @param {object} callbacks - functions to trigger after certain events
    * @param {object} options - socket.io-client options
    */
-  constructor(serverUrl, syncFunction, options) {
-    this.syncFunction = syncFunction;
+  constructor(serverUrl, callbacks, options) {
     this.socket = io(serverUrl, {
       reconnectionDelayMax: options?.reconnectionDelayMax ?? 10000,
       auth: {
@@ -19,7 +18,19 @@ export class SocketClient {
       },
     });
 
+    const {
+      onConnection = () => {}, // to trigger on connection
+      onDisconnection = () => {}, // to trigger on disconnection
+      onNotify = () => {}, // to trigger whenever is notified
+    } = callbacks;
+
     // * Event to notify a client
-    this.socket.on("notify", syncFunction);
+    this.socket.on("connection", onConnection);
+
+    // * Event to notify a client
+    this.socket.on("disconnection", onDisconnection);
+
+    // * Event to notify a client
+    this.socket.on("notify", onNotify);
   }
 }
