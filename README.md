@@ -7,6 +7,8 @@
 3. notify - to know if the client has to sync with the server
 4. error - to know if an error has occurred
 
+### How to use
+
 ```
 import { SocketClient } from "@sito/socket-client";
 
