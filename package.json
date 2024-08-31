@@ -1,15 +1,23 @@
 {
   "name": "@sito/socket-client",
   "version": "0.0.1",
-  "description": "",
+  "description": "Super small lib for socket client",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "node --env-file=.env test.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sito8943/-sito-client"
+  },
+  "keywords": [
+    "javascript",
+    "socket",
+    "client"
+  ],
+  "author": "sito8943",
+  "license": "MIT",
   "dependencies": {
     "socket.io-client": "4.7.5"
   }
