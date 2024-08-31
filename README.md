@@ -2,9 +2,10 @@
 
 ## Events
 
-1 - connection - to know if the client connected
-2 - disconnection - to know if the client disconnected
-3 - notify  - to know if the client has to sync with the server
+1. connected - to know if the client connected
+2. disconnect - to know if the client disconnected
+3. notify - to know if the client has to sync with the server
+4. error - to know if an error has occurred
 
 ```
 import { SocketClient } from "@sito/socket-client";
