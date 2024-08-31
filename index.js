@@ -19,18 +19,23 @@ export class SocketClient {
     });
 
     const {
-      onConnection = () => {}, // to trigger on connection
-      onDisconnection = () => {}, // to trigger on disconnection
-      onNotify = () => {}, // to trigger whenever is notified
+      onConnected = () => {
+        console.info("connected");
+      },
+      onDisconnect = () => {
+        console.info("disconnected");
+      },
+      onNotify = () => {
+        console.info("notified");
+      },
+      onError = (error) => {
+        console.error(error.message);
+      },
     } = callbacks;
 
-    // * Event to notify a client
-    this.socket.on("connection", onConnection);
-
-    // * Event to notify a client
-    this.socket.on("disconnection", onDisconnection);
-
-    // * Event to notify a client
+    this.socket.on("error", onError);
+    this.socket.on("connected", onConnected);
+    this.socket.on("disconnect", onDisconnect);
     this.socket.on("notify", onNotify);
   }
 }
